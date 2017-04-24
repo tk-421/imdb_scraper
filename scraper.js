@@ -6,23 +6,22 @@ var app     = express();
 
 app.set('view engine', 'pug')
 
-// app.get('/', function(req, res){
-//   res.send("Hello There")
-// })
-
-app.get('/scraper', function(req, res){
+app.get('/', function(req, res){
   url_base = 'http://www.imdb.com'
   url = 'http://www.imdb.com/movies-in-theaters/?ref_=nv_mv_inth_1';
 
   request(url, function(error, response, html) {
     if (!error){
       var $ = cheerio.load(html)
+      var index;
 
       var data_file = {
         table:[]
       };
+      var title_list = []
+      var images = []
 
-      var index;
+      const movie_list = new Map();
 
       div_list = [];
       $('.list_item').filter(function(){
@@ -33,6 +32,12 @@ app.get('/scraper', function(req, res){
       for (index = 0; index < div_list.length; ++index){
         title = div_list[index].find('.overview-top').children().first().text()
         image_url = div_list[index].find('.hover-over-image').children('img').attr('src')
+        movie_list.set('movie' + index, {
+          movie_title: title,
+          movie_image_url: image_url
+        });
+        // movie_list[index]['movie_title'] = title
+        // movie_list[index]['image_url'] = image_url
         var rating;
 
         ratings_link = div_list[index].find('h4').children().attr('href')
@@ -52,12 +57,17 @@ app.get('/scraper', function(req, res){
             })
           }
         })
-        data_file.table.push({title: title, image_url: image_url, rating: rating})
-        res.render('popup.pug', {title: title, image: image_url})
       }
+      for (var key of movie_list){
+        for (var subkey of key){
+          title_list.push(subkey['movie_title'])
+          images.push(subkey['movie_image_url'])
+        }
+      }
+      data_file.table.push({title: title, image_url: image_url, rating: rating})
+      res.render('popup.pug', {title_list : title_list, images : images})
       var json_data = JSON.stringify(data_file)
       fs.writeFile('data_output.json', json_data, 'utf8')
-      res.send('File Written, check it out')
     }
   })
 })
