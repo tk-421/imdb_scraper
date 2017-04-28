@@ -6,12 +6,10 @@
   </head>
   <body>
     <div id="status">
-      each key in images
-        <ul>
-          img(src=key)
-        </ul>
-      each key in title_list
-          h4= key
+      each movie in movie_list
+        h4= movie[1]
+      each image in images
+        img(src = image)
     </div>
   </body>
 </html>

@@ -65,7 +65,7 @@ app.get('/', function(req, res){
         }
       }
       data_file.table.push({title: title, image_url: image_url, rating: rating})
-      res.render('popup.pug', {title_list : title_list, images : images})
+      res.render('popup.pug', {movie_list : movie_list, images : images})
       var json_data = JSON.stringify(data_file)
       fs.writeFile('data_output.json', json_data, 'utf8')
     }
