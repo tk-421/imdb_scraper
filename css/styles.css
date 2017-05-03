@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: grid;
+}
+div#container {
+  background-color: #171A21;
+  width: 100vw;
+  overflow: auto;
+}
+
+div#movie-container {
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: #171A21;
+  display: flex;
+  flex-wrap: wrap;
+  color: #ffffff;
+  width: auto;
+  overflow: auto;
+}
+
+div#poster-image {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+div#title-text{
+  color: #ffffff;
+}
