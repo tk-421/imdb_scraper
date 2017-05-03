@@ -14,8 +14,9 @@
           each item in movie_list
             <div class="col col-md-3">
               <div class="poster-image text-center" id="poster-image">
-                img(src = item.movie_image_url)
-                h4= item.movie_title
+                a(href= item.rt_link)
+                  img(src = item.movie_image_url href= item.rt_link, target= item.rt_link)
+                  h4= item.movie_title
               </div>
             </div>
         </div>

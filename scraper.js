@@ -29,8 +29,14 @@ app.get('/', function(req, res){
       for (index = 0; index < div_list.length; ++index){
         title = div_list[index].find('.overview-top').children().first().text()
         image_url = div_list[index].find('.hover-over-image').children('img').attr('src')
+        temp_rt_title = title.toLowerCase()
+        no_date_rt_title = temp_rt_title.replace(/\(\d+\)/g, "")
+        rt_title = no_date_rt_title.replace(" - [limited]", "")
+        rt_title = rt_title.replace(/[^a-z0-9 ]/g, '')
+        rt_title = rt_title.trim()
+        rt_title = rt_title.replace(/ /g, "_")
 
-        movie_list.push({movie_title: title, movie_image_url: image_url})
+        movie_list.push({movie_title: title, movie_image_url: image_url, rt_link: "https://www.rottentomatoes.com/m/" + rt_title})
 
         var rating;
 
