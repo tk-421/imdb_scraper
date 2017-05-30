@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+.h1{
+  background-color: #171A21;
+  color: #ffffff
+}
+
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
 .col-3 {width: 25%;}

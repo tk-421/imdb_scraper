@@ -8,15 +8,17 @@
       <script src="./scraper.js"></script>
   </head>
   <body width="100%">
+    <h1> New and Recent Movies</h1>
     <div class="container" id="container">
       <div class="row">
         <div class="movie-container" id="movie-container">
           each item in movie_list
             <div class="col col-md-3">
               <div class="poster-image text-center" id="poster-image">
-                a(href= item.rt_link)
-                  img(src = item.movie_image_url href= item.rt_link, target= item.rt_link)
+                a(href= item.imdb_link)
+                  img(src = item.movie_image_url href= item.imdb_link, target= item.imdb_link)
                   h4= item.movie_title
+                  h5= item.rating
               </div>
             </div>
         </div>
